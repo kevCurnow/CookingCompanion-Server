@@ -17,6 +17,6 @@ app.use('/recipe', recipe);
 let ingredient = require('./controllers/ingredient-controller');
 app.use('/ingredient', ingredient);
 
-app.listen(3000, function(){
-    console.log('App is listening on port 3000');
+app.listen(process.env.PORT, function(){
+    console.log(`App is listening on port ${process.env.PORT}`);
 })

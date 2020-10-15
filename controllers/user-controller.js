@@ -53,7 +53,7 @@ router.post("/login", (req, res) => {
 
 //Allow admin to get all users
 router.get("/admin", validateAdmin, (req, res) => {
-    const query = {order: [["lastName", "DESC"], ["firstName", "DESC"]]};
+    const query = {order: [["id", "ASC"]]};
 
     User.findAll(query)
         .then((users) => {

@@ -80,6 +80,18 @@ router.post("/:recipeID", validateSession, (req, res) => {
     .catch(err => res.status(500).json({ error: err}));
 })
 
+//Get the saved recipes for a user
+router.get("/list/recipeList", validateSession, (req, res) => {
+    let currentUserID = req.user.id
+    Recipe.findAll({
+        where: {
+            userID: currentUserID
+        }
+    })
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(500).json({ error: err}));
+})
+
 //Get a specific recipe from Spoonacular
 router.get("/recipe/:recipeID", (req, res) => {
     const apiKey = process.env.API_KEY;

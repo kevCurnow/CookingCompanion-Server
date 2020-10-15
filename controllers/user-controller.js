@@ -68,6 +68,17 @@ router.get("/admin", validateAdmin, (req, res) => {
         });
 });
 
+//Allow admin to update a user's role
+router.put("/:id", validateAdmin, (req, res) => {
+    User.update(
+        req.body, {where: {
+            id: req.params.id
+        }}
+    )
+    .then((user) => res.status(200).json({message: "User role was updated!"}))
+    .catch(err => res.status(500).json({error: err}))
+})
+
 //Allow admin to delete a user
 router.delete("/:id", validateAdmin, (req, res) => {
     const query = {where: {
